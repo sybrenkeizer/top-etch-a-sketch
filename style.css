@@ -1,0 +1,27 @@
+.header__main {
+  text-align: center;
+}
+
+main {
+  display: flex;
+  /* align-content: center; */
+  justify-content: center;
+  gap: 20px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid__container {
+  display: grid;
+  width: 500px;
+  height: 500px;
+  background-color: beige;
+  border: 1px solid black;
+}
+
+.grid__element {
+
+}

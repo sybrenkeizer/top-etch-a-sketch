@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta lang="en">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <meta name="keywords" content="draw, canvas, art, fun">
+    <meta name="description" content="Free drawing application">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Free Drawing Application</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header__main">Draw pad</h1>
+    </header>
+    <main>
+      <div class="settings">
+        <input class="drawColor" type="color" value="#000">
+        <input class="bgColor" type="color" value="#fff">
+        <button class="randomColorBtn"></button>
+        <button class="eraserBtn"></button>
+        <button class="clearBtn"></button>
+        <p>Grid size: 48 x 48</p>
+        <input class="sizeRange" type="range" value="48" min="1" max="64">
+        <button class="saveBtn"></button>
+      </div>
+      <div class="grid__container"></div>
+    </main>
+    <footer>
+      <small></small>
+    </footer>
+  </body>
+</html>
