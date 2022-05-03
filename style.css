@@ -12,6 +12,20 @@ main {
 .settings {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.draw-color,
+.bg-color {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.btn-active {
+  background-color: #000;
+  color: #fff;
 }
 
 .grid__container {
@@ -23,5 +37,5 @@ main {
 }
 
 .grid__element {
-
+  border: 1px solid #000;
 }

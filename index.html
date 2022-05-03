@@ -16,14 +16,22 @@
     </header>
     <main>
       <div class="settings">
-        <input class="drawColor" type="color" value="#000">
-        <input class="bgColor" type="color" value="#fff">
-        <button class="randomColorBtn"></button>
-        <button class="eraserBtn"></button>
-        <button class="clearBtn"></button>
-        <p>Grid size: 48 x 48</p>
-        <input class="sizeRange" type="range" value="48" min="1" max="64">
-        <button class="saveBtn"></button>
+        <div class="draw-color">
+          <input class="draw-color__input" type="color" id="draw-color" value="#000">
+          <label class="draw-color__description" for="draw-color">Drawing Color</label>
+        </div>
+        <div class="bg-color">
+          <input class="bg-color__input" type="color" id="bg-color" value="#fefefe">
+          <label class="bg-color__description" for="bg-color">Background Color</label>
+        </div>
+        <button class="btn random-color-btn">Random Colors</button>
+        <button class="btn eraser-btn">Eraser</button>
+        <button class="btn clear-btn">Clear</button>
+        <div class="grid-sizer">
+          <p class="grid-sizer__description">Grid size: 48 x 48</p>
+          <input class="grid-sizer__input" type="range" value="48" min="1" max="64">
+        </div>
+        <button class="btn show-grid-btn">Show Grid</button>
       </div>
       <div class="grid__container"></div>
     </main>
