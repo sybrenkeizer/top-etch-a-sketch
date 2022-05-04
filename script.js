@@ -12,11 +12,9 @@ const saveBtn = document.querySelector('.save-btn');
 const buttons = document.querySelectorAll('.btn');
 
 
-
 window.onload = function() {
   setGrid(48);
 }
-
 
 
 // Activate/deactivate button random colors
@@ -31,7 +29,6 @@ randomColorBtn.addEventListener('click', function() {
 })
 
 
-
 // Activate/deactivate button eraser
 let eraserBtnActive = false;
 eraserBtn.addEventListener('click', function() {
@@ -43,7 +40,6 @@ eraserBtn.addEventListener('click', function() {
   }
 })
 
-
 // Clear whole grid:
 // 1) Remove all grid elements
 // 2) Add new grid elements according to grid range input
@@ -51,7 +47,6 @@ clearBtn.addEventListener('click', function() {
   emptyGrid()
   setGrid(gridSizerInput.value)
 })
-
 
 
 let showGridBtnActive = false;
@@ -63,7 +58,6 @@ showGridBtn.addEventListener('click', function() {
     showGridBtnActive = false;
   }
 })
-
 
 
 // Set grid container template according to input
@@ -99,7 +93,6 @@ function setGrid(value) {
 }
 
 
-
 // Remove all children grid container
 function emptyGrid() {
   while (gridContainer.firstChild) {
@@ -108,12 +101,10 @@ function emptyGrid() {
 }
 
 
-
 // Store setting mouse down and mouse up
 let mouseIsDown = false;
 document.body.onmousedown = () => (mouseIsDown = true);
 document.body.onmouseup = () => (mouseIsDown = false);
-
 
 
 // Add color to targetted grid element only when mouse is is pressed down
@@ -130,7 +121,6 @@ function draw(event) {
     event.target.style.backgroundColor = `rgba(${randomR}, ${randomG}, ${randomB}, 0.${randomA})`
   }
 }
-
 
 
 // Set grid background according to input

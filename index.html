@@ -7,36 +7,63 @@
     <meta name="keywords" content="draw, canvas, art, fun">
     <meta name="description" content="Free drawing application">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fcbcf62e92.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
-    <title>Free Drawing Application</title>
+
+    <title>Etch a Sketch</title>
   </head>
   <body>
     <header>
-      <h1 class="header__main">Draw pad</h1>
+      <h1 class="header">Etch A Sketch</h1>
     </header>
     <main>
       <div class="settings">
+
         <div class="draw-color">
-          <input class="draw-color__input" type="color" id="draw-color" value="#000">
-          <label class="draw-color__description" for="draw-color">Drawing Color</label>
+          <div class="draw-color__input__wrapper">
+            <input class="draw-color__input" type="color" id="draw-color" value="#000" title="Choose pencil color">
+          </div>
+          <label class="draw-color__description" for="draw-color" title="Choose pencil color">Drawing Color</label>
         </div>
+
         <div class="bg-color">
-          <input class="bg-color__input" type="color" id="bg-color" value="#fefefe">
-          <label class="bg-color__description" for="bg-color">Background Color</label>
+          <div class="bg-color__input__wrapper">
+            <input class="bg-color__input" type="color" id="bg-color" value="#fefefe" title="Choose Background color of sketch pad">
+          </div>
+          <label class="bg-color__description" for="bg-color" title="Choose Background color of sketch pad">Background Color</label>
         </div>
-        <button class="btn random-color-btn">Random Colors</button>
-        <button class="btn eraser-btn">Eraser</button>
-        <button class="btn clear-btn">Clear</button>
+
+        <button class="btn random-color-btn" title="Activate pencil with random colors">Random Colors</button>
+
+        <button class="btn eraser-btn" title="Activate eraser to remove drawing strokes">Eraser</button>
+
+        <button class="btn clear-btn" title="Clear the sketch pad">Clear</button>
+
         <div class="grid-sizer">
-          <p class="grid-sizer__description">Grid size: 48 x 48</p>
-          <input class="grid-sizer__input" type="range" value="48" min="1" max="64">
+          <label class="grid-sizer__description" title="Change the grid size up to a maximum of 64 x 64">Grid size: 48 x 48</label>
+          <input class="grid-sizer__input" type="range" value="48" min="1" max="64" title="Change the grid size up to a maximum of 64 x 64"</input>
         </div>
-        <button class="btn show-grid-btn">Show Grid</button>
+        
+        <button class="btn show-grid-btn" title="Click to show the grid">Show Grid</button>
+
       </div>
+
       <div class="grid__container"></div>
+
     </main>
+
     <footer>
-      <small></small>
+      <small>
+        &copy Copyright
+        <script>document.write(new Date().getFullYear())</script>
+        Sybren Keizer
+        <a href="https://github.com/sybrenkeizer" target="_blank" title="View Github">
+          <i class="fab fa-github"></i>
+        </a>
+      </small>
     </footer>
   </body>
 </html>
