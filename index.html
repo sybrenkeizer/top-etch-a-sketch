@@ -22,48 +22,72 @@
     <main>
       <div class="settings">
 
-        <div class="draw-color">
-          <div class="draw-color__input__wrapper">
-            <input class="draw-color__input" type="color" id="draw-color" value="#000" title="Choose pencil color">
-          </div>
-          <label class="draw-color__description" for="draw-color" title="Choose pencil color">Drawing Color</label>
-        </div>
+        <fieldset>
+          <legend>Drawing</legend>
+          <div class="fieldset__container">
+            <div class="custom-color radio-box fieldset__item">
+              <div class="custom-color__input__wrapper">
+                <input class="custom-color__input" type="color" value="#000" title="Choose pencil color">
+              </div>
+              <input class="custom-color__radio" type="radio" name="drawing" id="custom-color" checked>
+              <label class="custom-color__description" for="custom-color" title="Choose pencil color">Custom Color</label>
+            </div>
+            <div class="random-color radio-box fieldset__item">
+              <input class="random-color__input" type="radio" name="drawing" id="random-color">
+              <label class="random-color__description" for="random-color" title="Activate pencil with random colors">Random Color</label>
+            </div>
+            <div class="dark-gradient radio-box fieldset__item">
+              <input class="dark-gradient__input" type="radio" name="drawing" id="dark-gradient">
+              <label class="dark-gradient__description" for="dark-gradient" title="Darken any grid being hovered">Dark Gradient</label>
+            </div>
+            <!-- gradient light -->
+            <div class="light-gradient radio-box fieldset__item">
+              <input class="light-gradient__input" type="radio" name="drawing" id="light-gradient">
+              <label class="light-gradient__description" for="light-gradient" title="Apply on drawings to lighten the gradient">Light Gradient</label>
+            </div>
 
-        <div class="bg-color">
-          <div class="bg-color__input__wrapper">
-            <input class="bg-color__input" type="color" id="bg-color" value="#fefefe" title="Choose Background color of sketch pad">
-          </div>
-          <label class="bg-color__description" for="bg-color" title="Choose Background color of sketch pad">Background Color</label>
-        </div>
+            <div class="eraser radio-box fieldset__item">
+              <input class="eraser__input" type="radio" name="drawing" id="eraser">
+              <label class="eraser__description" for="eraser" title="Activate eraser to remove drawing strokes">Eraser</label>
+            </div>
+          </div> <!-- CLOSURE FIELDSET CONTAINER -->
+        </fieldset>
 
-        <button class="btn random-color-btn" title="Activate pencil with random colors">Random Colors</button>
+        <fieldset>
+          <legend>Canvas</legend>
+          <div class="fieldset__container">
+            <div class="canvas-color radio-box fieldset__item">
+              <div class="canvas-color__input__wrapper">
+                <input class="canvas-color__input" type="color" value="#fefefe" title="Choose Background color of sketch pad">
+              </div>
+              <input class="canvas-color__radio" type="radio" name="canvas" id="canvas-color">
+              <label class="canvas-color__description" for="canvas-color" title="Choose Background color of sketch pad">Canvas Color</label>
+            </div>
+            <div class="toggle-grid check-box fieldset__item">
+              <input class="toggle-grid__input" type="checkbox" id="toggle-grid">
+              <label class="toggle-grid__description" for="toggle-grid" title="Click to show the grid">Show Grid</label>
+            </div>
+            <div class="grid-sizer fieldset__item">
+              <label class="grid-sizer__description" title="Change the grid size up to a maximum of 64 x 64">Grid size: 48 x 48</label>
+              <input class="grid-sizer__input" type="range" value="48" min="1" max="64" title="Change the grid size up to a maximum of 64 x 64"</input>
+            </div>
+            <button class="clear-field__btn btn fieldset__item" title="Clear the sketch pad">Clear</button>
+            <button class="save__btn btn fieldset__item" title="Save drawing in browser cache. Only the last drawing will be retrievable">Save</button>
+            <button class="restore__btn btn fieldset__item" title="Restore last saved drawing">Restore</button>
+            <button class="export_btn btn fieldset__item" title="Export drawing to computer">Export</button>
+          </div> <!-- CLOSURE FIELDSET CONTAINER -->
+        </fieldset>
 
-        <button class="btn eraser-btn" title="Activate eraser to remove drawing strokes">Eraser</button>
-
-        <button class="btn clear-btn" title="Clear the sketch pad">Clear</button>
-
-        <div class="grid-sizer">
-          <label class="grid-sizer__description" title="Change the grid size up to a maximum of 64 x 64">Grid size: 48 x 48</label>
-          <input class="grid-sizer__input" type="range" value="48" min="1" max="64" title="Change the grid size up to a maximum of 64 x 64"</input>
-        </div>
-        
-        <button class="btn show-grid-btn" title="Click to show the grid">Show Grid</button>
-
-      </div>
+      </div> <!-- CLOSURE SETTINGS -->
 
       <div class="grid__container"></div>
-
     </main>
 
     <footer>
       <small>
-        &copy Copyright
-        <script>document.write(new Date().getFullYear())</script>
-        Sybren Keizer
-        <a href="https://github.com/sybrenkeizer" target="_blank" title="View Github">
-          <i class="fab fa-github"></i>
-        </a>
+        Created by <a href="https://github.com/sybrenkeizer">Sybren Keizer</a> for <a href="https://www.theodinproject.com/">The Odin Project</a>
       </small>
     </footer>
+
   </body>
 </html>

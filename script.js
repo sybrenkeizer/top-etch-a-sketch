@@ -1,10 +1,10 @@
 // Gather elements
 const gridContainer = document.querySelector('.grid__container');
-const drawColorInput = document.querySelector('.draw-color__input');
-const bgColorInput = document.querySelector('.bg-color__input');
-const randomColorBtn = document.querySelector('.random-color-btn');
-const eraserBtn = document.querySelector('.eraser-btn');
-const clearBtn = document.querySelector('.clear-btn');
+const customColorInput = document.querySelector('.custom-color__input');
+const canvasColorInput = document.querySelector('.canvas-color__input');
+const randomColorInput = document.querySelector('.random-color__input');
+const eraserBtn = document.querySelector('.eraser__input');
+const clearFieldBtn = document.querySelector('.clear-field__btn');
 const gridSizerDescription = document.querySelector('.grid-sizer__description');
 const gridSizerInput = document.querySelector('.grid-sizer__input');
 const showGridBtn = document.querySelector('.show-grid-btn');
@@ -16,15 +16,20 @@ window.onload = function() {
   setGrid(48);
 }
 
+// Store setting mouse down and mouse up
+let mouseIsDown = false;
+document.body.onmousedown = () => (mouseIsDown = true);
+document.body.onmouseup = () => (mouseIsDown = false);
+
 
 // Activate/deactivate button random colors
-let randomColorsBtnActive = false;
-randomColorBtn.addEventListener('click', function() {
-  randomColorBtn.classList.toggle('btn-active');
-  if (randomColorsBtnActive === false) {
-    randomColorsBtnActive = true;
-  } else if (randomColorsBtnActive === true) {
-    randomColorsBtnActive = false;
+let randomColorInputActive = false;
+randomColorInput.addEventListener('click', function() {
+  randomColorInput.classList.toggle('btn-active');
+  if (randomColorInputActive === false) {
+    randomColorInputActive = true;
+  } else if (randomColorInputActive === true) {
+    randomColorInputActive = false;
   }
 })
 
@@ -43,7 +48,7 @@ eraserBtn.addEventListener('click', function() {
 // Clear whole grid:
 // 1) Remove all grid elements
 // 2) Add new grid elements according to grid range input
-clearBtn.addEventListener('click', function() {
+clearFieldBtn.addEventListener('click', function() {
   emptyGrid()
   setGrid(gridSizerInput.value)
 })
@@ -79,10 +84,8 @@ function setGrid(value) {
 
     if (showGridBtnActive === true) {
       gridElement.classList.add('grid__element');
-      console.log(gridElement.classList);
     } else if (showGridBtnActive === false) {
       gridElement.classList.remove('grid__element');
-      console.log(gridElement.classList);
 
     }
 
@@ -93,6 +96,7 @@ function setGrid(value) {
 }
 
 
+
 // Remove all children grid container
 function emptyGrid() {
   while (gridContainer.firstChild) {
@@ -101,19 +105,14 @@ function emptyGrid() {
 }
 
 
-// Store setting mouse down and mouse up
-let mouseIsDown = false;
-document.body.onmousedown = () => (mouseIsDown = true);
-document.body.onmouseup = () => (mouseIsDown = false);
-
 
 // Add color to targetted grid element only when mouse is is pressed down
 function draw(event) {
   if (event.type === 'mouseover' && !mouseIsDown) return
-  event.target.style.backgroundColor = drawColorInput.value;
+  event.target.style.backgroundColor = customColorInput.value;
   if (eraserBtnActive === true) {
     event.target.style.backgroundColor = '';
-  } else if (randomColorsBtnActive === true) {
+  } else if (randomColorInputActive === true) {
     const randomR = Math.floor(Math.random() * 256);
     const randomG = Math.floor(Math.random() * 256);
     const randomB = Math.floor(Math.random() * 256);
@@ -123,8 +122,9 @@ function draw(event) {
 }
 
 
+
 // Set grid background according to input
-bgColorInput.addEventListener('input', () => gridContainer.style.backgroundColor = bgColorInput.value)
+canvasColorInput.addEventListener('input', () => gridContainer.style.backgroundColor = canvasColorInput.value)
 
 
 
