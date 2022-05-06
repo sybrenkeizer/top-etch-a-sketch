@@ -28,12 +28,13 @@
   --clr-light: #BFA995;
   --clr-dark: #262626;
   --clr-soft: #D9C3B0;
-  --clr-accent: #697363;
+  --clr-accent-1: #697363;
+  --clr-accent-2: #59514A;
 
   --fs-h1: clamp(1.7rem, 4vw, 2.5rem);
   --fs-legend: clamp(1.5rem, 3.1vw, 1.8rem);
   --fs-label: clamp(0.9rem, 1.9vw, 1.1rem);
-  --fs-btn: clamp(0.7rem, 1.75vw, 1.1rem);
+  --fs-btn: clamp(0.8rem, 1.75vw, 1.1rem);
   --fs-footer: clamp(0.6rem, 1.6vw, 1rem);
   --fs-body: 1rem;
 
@@ -45,6 +46,7 @@
   --txt-shadow-light: 1px -1px 0px #fff;
   --txt-shadow-dark: 1px 1px 4px var(--clr-dark);
   --box-shadow: 1px 2px 3px 0px var(--clr-dark);
+  /* --box-shadow-active: 1px 5px 3px 0px var(--clr-dark); */
 
   --color-input-size: clamp(1.8rem, 4vw, 2.8rem);
   --radio-check-size: clamp(0.9rem, 1.70vw, 1.1rem);
@@ -136,13 +138,13 @@ legend {
 label  {
   margin-left: var(--spacer-md);
 }
-input[type="radio"],
-input[type="checkbox"] {
+.radiobox,
+.checkbox {
   width: var(--radio-check-size);
   height: var(--radio-check-size);
 }
 
-/* <<< Color Input >>> */
+/* Color Input */
 .custom-color__radio,
 .canvas-color__radio {
   visibility: hidden;
@@ -166,7 +168,7 @@ input[type="color"] {
   margin: -25%;
 }
 
-/* <<< Grid Sizer >>> */
+/* Grid Sizer */
 .grid-sizer {
   display: flex;
   flex-direction: column;
@@ -177,7 +179,7 @@ input[type="color"] {
   width: 100%;
 }
 
-/* <<< Buttons >>> */
+/* Buttons */
 .btn {
   font-size: var(--fs-btn);
   display: block;
@@ -186,8 +188,16 @@ input[type="color"] {
   border-radius: var(--border-radius);
   border: 2px solid var(--clr-dark);
   background-color: #BFA995;
+  font-weight: var(--fw-bold);
+  transition: all 0.3s;
 }
-
+.btn:hover {
+  box-shadow: var(--box-shadow);
+}
+.btn:active {
+  background-color: var(--clr-accent-2);
+  color: var(--clr-soft);
+}
 
 /* ===== 3.3 GRID ===== */
 .grid__container {
