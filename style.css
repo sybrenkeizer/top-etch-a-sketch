@@ -9,7 +9,7 @@
   3.4 FOOTER
 4 MEDIA QUERIES
 
- */
+*/
 
 
 
@@ -25,10 +25,10 @@
   --fw-reg: 200;
   --fw-bold: 600;
 
-  --clr-light: #CCD9D4;
-  --clr-dark: #2B2E2D;
-  --clr-soft: #D9CECC;
-  --clr-accent: #D1D696;
+  --clr-light: #BFA995;
+  --clr-dark: #262626;
+  --clr-soft: #D9C3B0;
+  --clr-accent: #697363;
 
   --fs-h1: clamp(1.7rem, 4vw, 2.5rem);
   --fs-legend: clamp(1.5rem, 3.1vw, 1.8rem);
@@ -60,7 +60,7 @@
 }
 body {
   font-family: var(--ff-pri);
-  background-color: var(--clr-soft);
+  background-color: #BFA995;
   color: var(--clr-dark);
   font-size: var(--fs-body);
 }
@@ -117,6 +117,7 @@ main {
 fieldset {
   border: 2px solid var(--clr-dark);
   border-radius: var(--border-radius);
+  background-color: #D9C3B0;
 }
 legend {
   margin: -4% 7%;
@@ -184,6 +185,7 @@ input[type="color"] {
   padding-block: 0.4em;
   border-radius: var(--border-radius);
   border: 2px solid var(--clr-dark);
+  background-color: #BFA995;
 }
 
 
