@@ -3,15 +3,21 @@
 1 GLOBAL
 2 TYPOGRAPHY
 3 LAYOUT
-  3.1
+  3.1 HEADER
+  3.2 SETTINGS
+  3.3 GRID
+  3.4 FOOTER
+4 MEDIA QUERIES
 
  */
 
 
 
-/*  ========
-    1 GLOBAL
-    ======== */
+
+
+/*  ==========
+     1 GLOBAL
+    ========== */
 :root {
   --ff-pri: 'Raleway', sans-serif;
   --ff-sec: 'Orbitron', sans-serif;
@@ -25,8 +31,8 @@
   --clr-accent: #D1D696;
 
   --fs-h1: clamp(1.7rem, 4vw, 2.5rem);
-  --fs-legend: clamp(1.2rem, 2.9vw, 1.8rem);
-  --fs-label: clamp(0.8rem, 1.75vw, 1.1rem);
+  --fs-legend: clamp(1.5rem, 3.1vw, 1.8rem);
+  --fs-label: clamp(0.9rem, 1.9vw, 1.1rem);
   --fs-btn: clamp(0.7rem, 1.75vw, 1.1rem);
   --fs-footer: clamp(0.6rem, 1.6vw, 1rem);
   --fs-body: 1rem;
@@ -61,9 +67,11 @@ body {
 
 
 
-/*  ============
-    2 TYPOGRAPHY
-    ============ */
+
+
+/*  ==============
+     2 TYPOGRAPHY
+    ============== */
 
 h1 { font-size: var(--fs-h1) }
 legend { font-size: var(--fs-legend) }
@@ -76,16 +84,21 @@ button { font-family: var(--ff-pri) }
 
 
 
-/*  ========
-    3 LAYOUT
-    ======== */
 
+
+/*  ==========
+     3 LAYOUT
+    ========== */
+
+/* ===== HEADER ===== */
 .header {
   text-align: center;
   font-family: var(--ff-sec);
   margin-block: var(--spacer-sm);
 }
 
+
+/* ===== 3.1 GENERAL ===== */
 main {
   display: flex;
   justify-content: center;
@@ -93,66 +106,50 @@ main {
   padding-inline: var(--spacer-sm);
 }
 
+
+/* ===== 3.2 SETTINGS ===== */
 .settings {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding-right: var(--spacer-md);
+  margin-right: var(--spacer-md);
 }
-
 fieldset {
   border: 2px solid var(--clr-dark);
   border-radius: var(--border-radius);
 }
-
 legend {
-  margin: 0 7%;
-  padding: 0 0.3em;
+  margin: -4% 7%;
+  padding: 0 2%;
   text-shadow: var(--txt-shadow-dark);
 }
-
 .fieldset__container {
   padding-inline: 1em;
 }
-
 .fieldset__item {
   display: flex;
-  /* gap: var(--spacer-sm);   */
   align-items: center;
-  /* min-width: 10rem; */
   margin-block: var(--spacer-xlg);
-  width: 32vmin;
+  width: 30vmin;
 }
-
 label  {
-  margin-left: 1em;
+  margin-left: var(--spacer-md);
+}
+input[type="radio"],
+input[type="checkbox"] {
+  width: var(--radio-check-size);
+  height: var(--radio-check-size);
 }
 
+/* <<< Color Input >>> */
 .custom-color__radio,
 .canvas-color__radio {
   visibility: hidden;
-  margin-left: -1.2rem;
+  margin-left: -0.8em;
 }
-
-.custom-color,
-.canvas-color {
-  gap: 0;
-}
-
 .canvas-color > input {
   visibility: hidden;
 }
-
-.btn {
-  font-size: var(--fs-btn);
-  display: block;
-  width: 100%;
-  padding-block: 3px;
-  border-radius: var(--border-radius);
-  border: 2px solid var(--clr-dark);
-  margin-bottom: 10px;
-}
-
 .custom-color__input__wrapper,
 .canvas-color__input__wrapper {
   overflow: hidden;
@@ -160,32 +157,37 @@ label  {
   height: var(--color-input-size);
   border-radius: 50%;
   box-shadow: var(--box-shadow);
-  margin-left: -6px;
+  margin-left: -0.3em;
 }
-
 input[type="color"] {
   width: 150%;
   height: 150%;
   margin: -25%;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-  width: var(--radio-check-size);
-  height: var(--radio-check-size);
-}
-
+/* <<< Grid Sizer >>> */
 .grid-sizer {
   display: flex;
   flex-direction: column;
   padding-top: var(--spacer-xlg);
   align-items: center;
 }
-
 .grid-sizer__input {
   width: 100%;
 }
 
+/* <<< Buttons >>> */
+.btn {
+  font-size: var(--fs-btn);
+  display: block;
+  width: 100%;
+  padding-block: 0.4em;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--clr-dark);
+}
+
+
+/* ===== 3.3 GRID ===== */
 .grid__container {
   display: grid;
   width: 80vmin;
@@ -194,44 +196,35 @@ input[type="checkbox"] {
   border: 2px solid var(--clr-dark);
   border-radius: var(--border-radius);
 }
-
 .grid__element {
   border: 1px solid #000;
 }
 
+
+/* ===== 3.4 FOOTER ===== */
 footer {
   margin-top: var(--spacer-sm);
   text-align: center;
 }
 
-.fab {
-  color: #000;
-}
 
 
-/* MEDIA QUERIES */
+
+
+/*  ===============
+     MEDIA QUERIES
+    =============== */
 
 @media screen and (max-width: 860px) {
   main {
     flex-direction: column;
-    gap: 1em;
   }
   .settings {
     flex-direction: row;
     margin: auto;
     width: 80vmin;
     justify-content: space-between;
-    padding-right: 0;
-  }
-  fieldset {
-    /* justify-content: space-between; */
-  }
-  .fieldset__container {
-
-  }
-  .fieldset__item {
-    width: 32vmin;
-
+    margin-bottom: var(--spacer-md);
   }
   .grid__container {
     margin-inline: auto;
