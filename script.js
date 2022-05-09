@@ -34,6 +34,7 @@ const DEFAULT_SIZE = 50;
 let currentDrawOption = DEFAULT_OPTION;
 let currentSize = DEFAULT_SIZE;
 let mouseIsDown = false;
+let gridIsVisible = false;
 
 
 // Main functions
@@ -111,15 +112,22 @@ canvasColorInput.addEventListener('input', () => {
 })
 // show grid option
 
+// function toggleGrid() {
+  showGridBtn.addEventListener('click', () => {
+    if (showGridBtn.checked) {
+      gridIsVisible = true;
+    } else if (!showGridBtn.checked) {
+      gridIsVisible = false;
+    }
+    clearCanvas()
+    setGrid(gridInputRange.value);
+  })
+// }
 
-let showGridBtnActive = false;
-showGridBtn.addEventListener('click', function() {
-  showGridBtn.classList.toggle('btn-active');
-  showGridBtnActive === false ? showGridBtnActive = true : false;
-})
 
 
 gridInputRange.addEventListener('input', () => {
+  clearCanvas();
   setGrid(gridInputRange.value);
   gridSizerDescription.innerHTML = `Grid size ${gridInputRange.value} x ${gridInputRange.value}`;
 })
@@ -142,6 +150,13 @@ function setGrid(value) {
     let gridElement = document.createElement('div');
     gridElement.addEventListener('mouseover', draw);
     gridElement.addEventListener('mousedown', draw);
+
+    if (gridIsVisible === true) {
+      gridElement.classList.add('grid-show');
+    } else if (gridIsVisible === false) {
+      gridElement.classList.remove('grid-show');
+    }
+
     gridContainer.appendChild(gridElement);
   }
 }
