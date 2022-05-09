@@ -137,21 +137,24 @@ legend {
 }
 label  {
   margin-left: var(--spacer-md);
+  transition: all 3s;
+  cursor: pointer;
+}
+label:hover {
+  text-decoration: underline;
 }
 .radiobox,
 .checkbox {
   width: var(--radio-check-size);
   height: var(--radio-check-size);
+  cursor: pointer;
 }
 
 /* Color Input */
 .custom-color__radio,
 .canvas-color__radio {
-  visibility: hidden;
-  margin-left: -0.8em;
-}
-.canvas-color > input {
-  visibility: hidden;
+  margin-left: 1em;
+  display: none;
 }
 .custom-color__input__wrapper,
 .canvas-color__input__wrapper {
@@ -161,6 +164,10 @@ label  {
   border-radius: 50%;
   box-shadow: var(--box-shadow);
   margin-left: -0.3em;
+}
+.custom-color__input,
+.canvas-color__input {
+  cursor: pointer;
 }
 input[type="color"] {
   width: 150%;
@@ -177,6 +184,7 @@ input[type="color"] {
 }
 .grid-sizer__input {
   width: 100%;
+  cursor: pointer;
 }
 
 /* Buttons */
@@ -189,16 +197,20 @@ input[type="color"] {
   border: 2px solid var(--clr-dark);
   background-color: #BFA995;
   font-weight: var(--fw-bold);
-  transition: all 0.3s;
+  transition-duration: 0.3s;
 }
 .btn:hover {
   box-shadow: var(--box-shadow);
+  cursor: pointer;
 }
 .btn:active {
   background-color: var(--clr-accent-2);
   color: var(--clr-soft);
 }
-
+.btn-active {
+  background-color: var(--clr-accent-2);
+  color: var(--clr-soft);
+}
 /* ===== 3.3 GRID ===== */
 .grid__container {
   display: grid;
@@ -208,7 +220,7 @@ input[type="color"] {
   border: 2px solid var(--clr-dark);
   border-radius: var(--border-radius);
 }
-.grid__element {
+.grid-show {
   border: 1px solid #000;
 }
 
