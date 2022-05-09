@@ -26,32 +26,32 @@
           <legend>Drawing</legend>
           <div class="fieldset__container">
 
-            <div class="custom-color radio-box fieldset__item">
+            <div class="fieldset__item">
               <div class="custom-color__input__wrapper">
-                <input class="custom-color__input color__input" type="color" value="#000" id="custom-color" title="Choose pencil color">
+                <input class="custom-color__input" type="color" value="#000" id="custom-color" title="Choose pencil color">
               </div>
-              <input class="draw-radio radiobox custom-color__radio" type="radio" name="drawing" id="custom-color">
-              <label class="custom-color__description radio__description" for="custom-color" title="Choose pencil color">Custom Color</label>
+              <input class="custom-color__radio" type="radio" name="drawing" id="custom-color" checked>
+              <label class="custom-color__description" for="custom-color" title="Choose pencil color">Custom Color</label>
             </div>
 
-            <div class="random-color radio-box fieldset__item">
-              <input class="draw-radio radiobox random-color__input" type="radio" name="drawing" id="random-color">
-              <label class="random-color__description radio__description" for="random-color" title="Activate pencil with random colors">Random Color</label>
+            <div class="fieldset__item">
+              <input class="random-color__input" type="radio" name="drawing" id="random-color">
+              <label class="random-color__description" for="random-color" title="Activate pencil with random colors">Random Color</label>
             </div>
 
-            <div class="dark-gradient radio-box fieldset__item">
-              <input class="draw-radio radiobox dark-gradient__input" type="radio" name="drawing" id="dark-gradient">
-              <label class="dark-gradient__description radio__description" for="dark-gradient" title="Darken any grid being hovered">Dark Gradient</label>
+            <div class="fieldset__item">
+              <input class="dark-gradient__input" type="radio" name="drawing" id="dark-gradient">
+              <label class="dark-gradient__description" for="dark-gradient" title="Darken any grid being hovered">Dark Gradient</label>
             </div>
 
-            <div class="light-gradient radio-box fieldset__item">
-              <input class="draw-radio radiobox light-gradient__input" type="radio" name="drawing" id="light-gradient">
-              <label class="light-gradient__description radio__description" for="light-gradient" title="Apply on drawings to lighten the gradient">Light Gradient</label>
+            <div class="fieldset__item">
+              <input class="light-gradient__input" type="radio" name="drawing" id="light-gradient">
+              <label class="light-gradient__description" for="light-gradient" title="Apply on drawings to lighten the gradient">Light Gradient</label>
             </div>
 
-            <div class="eraser radio-box fieldset__item">
-              <input class="draw-radio radiobox eraser__input" type="radio" name="drawing" id="eraser">
-              <label class="eraser__description radio__description" for="eraser" title="Activate eraser to remove drawing strokes">Eraser</label>
+            <div class="fieldset__item">
+              <input class="eraser__input" type="radio" name="drawing" id="eraser">
+              <label class="eraser__description" for="eraser" title="Activate eraser to remove drawing strokes">Eraser</label>
             </div>
 
           </div> <!-- CLOSURE FIELDSET CONTAINER -->
@@ -60,15 +60,15 @@
         <fieldset>
           <legend>Canvas</legend>
           <div class="fieldset__container">
-            <div class="canvas-color radio-box fieldset__item">
+            <div class="fieldset__item">
               <div class="canvas-color__input__wrapper">
-                <input class="canvas-color__input color__input" type="color" value="#fefefe" id="canvas-color" title="Choose Background color of sketch pad">
+                <input class="canvas-color__input" type="color" value="#fefefe" id="canvas-color" title="Choose Background color of sketch pad">
               </div>
-              <input class="radiobox canvas-color__radio" type="radio" name="canvas" id="canvas-color">
+              <input class="canvas-color__radio" type="radio" name="canvas" id="canvas-color" checked>
               <label class="canvas-color__description" for="canvas-color" title="Choose Background color of sketch pad">Canvas Color</label>
             </div>
-            <div class="toggle-grid check-box fieldset__item">
-              <input class="checkbox toggle-grid__input" type="checkbox" id="toggle-grid">
+            <div class="fieldset__item">
+              <input class="toggle-grid__input" type="checkbox" id="toggle-grid">
               <label class="toggle-grid__description" for="toggle-grid" title="Click to show the grid">Show Grid</label>
             </div>
             <div class="grid-sizer fieldset__item">

@@ -2,7 +2,9 @@
 const gridContainer = document.querySelector('.grid__container');
 const customColorInput = document.querySelector('.custom-color__input');
 const customColorRadio = document.querySelector('.custom-color__radio');
+const customColorDescription = document.querySelector('.custom-color__description');
 const canvasColorInput = document.querySelector('.canvas-color__input');
+const canvasColorRadio = document.querySelector('.canvas-color__radio');
 const randomColorInput = document.querySelector('.random-color__input');
 const darkGradientInput = document.querySelector('.dark-gradient__input');
 const lightGradientInput = document.querySelector('.light-gradient__input');
@@ -11,13 +13,7 @@ const clearCanvasBtn = document.querySelector('.clear-field__btn');
 const gridSizerDescription = document.querySelector('.grid-sizer__description');
 const gridInputRange = document.querySelector('.grid-sizer__input');
 const showGridBtn = document.querySelector('.toggle-grid__input');
-const saveBtn = document.querySelector('.save-btn');
-const buttons = document.querySelectorAll('.btn');
-const customColorDescription = document.querySelector('.custom-color__description');
-const canvasColorDescription = document.querySelector('.canvas-color__description');
-const drawRadioBoxes = document.querySelectorAll('.draw-radio');
-const radioDescriptions = document.querySelectorAll('.radio__description');
-const canvasColorRadio = document.querySelector('.canvas-color__radio');
+
 
 
 window.onload = function() {
@@ -25,9 +21,11 @@ window.onload = function() {
 }
 
 
+
 // Default options
 const DEFAULT_OPTION = 'customColor';
 const DEFAULT_SIZE = 50;
+
 
 
 // Main settings
@@ -37,13 +35,16 @@ let mouseIsDown = false;
 let gridIsVisible = false;
 
 
+
 // Main functions
 function setCurrentDrawOption(newOption) {
   currentDrawOption = newOption;
 }
+
 function setCurrentSize(newSize) {
   currentSize = newSize;
 }
+
 
 
 // Store interactions
@@ -55,6 +56,7 @@ lightGradientInput.onclick = () => setCurrentDrawOption('lightGradient');
 eraserBtn.onclick = () => setCurrentDrawOption('eraser');
 document.body.onmousedown = () => (mouseIsDown = true);
 document.body.onmouseup = () => (mouseIsDown = false);
+
 
 
 // Drawing function
@@ -80,13 +82,16 @@ function draw(event) {
 }
 
 
+
 // Drawing options
 function customColor() {
   event.target.style.backgroundColor = customColorInput.value;
-  customColorInput.addEventListener('input', () => {
-    customColorRadio.checked = true;
-  })
 }
+
+customColorInput.addEventListener('input', () => {
+  customColorRadio.checked = true;
+})
+
 function randomColor() {
   const randomR = Math.floor(Math.random() * 256);
   const randomG = Math.floor(Math.random() * 256);
@@ -94,15 +99,19 @@ function randomColor() {
   const randomA = Math.floor(Math.random() * 8 + 3);
   event.target.style.backgroundColor = `rgba(${randomR}, ${randomG}, ${randomB}, 0.${randomA})`
 }
+
 function darkGradient() {
   // not working yet
 }
+
 function lightGradient() {
   // not working yet
 }
+
 function eraser() {
   event.target.style.backgroundColor = canvasColorInput.value;
 }
+
 
 
 // Canvas options
@@ -110,31 +119,28 @@ canvasColorInput.addEventListener('input', () => {
   gridContainer.style.backgroundColor = canvasColorInput.value;
   canvasColorRadio.checked = true;
 })
-// show grid option
 
-// function toggleGrid() {
-  showGridBtn.addEventListener('click', () => {
-    if (showGridBtn.checked) {
-      gridIsVisible = true;
-    } else if (!showGridBtn.checked) {
-      gridIsVisible = false;
-    }
-    clearCanvas()
-    setGrid(gridInputRange.value);
-  })
-// }
-
-
+showGridBtn.addEventListener('click', () => {
+  if (showGridBtn.checked) {
+    gridIsVisible = true;
+  } else if (!showGridBtn.checked) {
+    gridIsVisible = false;
+  }
+  clearCanvas()
+  setGrid(gridInputRange.value);
+})
 
 gridInputRange.addEventListener('input', () => {
   clearCanvas();
   setGrid(gridInputRange.value);
   gridSizerDescription.innerHTML = `Grid size ${gridInputRange.value} x ${gridInputRange.value}`;
 })
+
 clearCanvasBtn.addEventListener('click', () => {
   clearCanvas();
   setGrid(gridInputRange.value);
 })
+
 
 
 // Sub functions
@@ -142,7 +148,9 @@ function clearCanvas() {
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.firstChild)
   }
+  console.log(currentDrawOption);
 }
+
 function setGrid(value) {
   gridContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`;
