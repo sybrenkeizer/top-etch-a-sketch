@@ -52,12 +52,6 @@ window.onload = function() {
 
 
 
-// canvasColorInput.addEventListener('input', () => {
-//   gridContainer.style.backgroundColor = canvasColorInput.value;
-//   canvasColorRadio.checked = true;
-// })
-
-
 // Store interactions
 customColorInput.onclick = () => setCurrentDrawOption('customColor');
 customColorDescription.onclick = () => setCurrentDrawOption('customColor')
@@ -77,10 +71,12 @@ function draw(event) {
     case 'customColor': customColor(); break;
     case 'randomColor': randomColor(); break;
     case 'darkGradient': darkGradient(); break;
-    case 'lightGradien': lightGradient(); break;
+    case 'lightGradient': lightGradient(); break;
     case 'eraser': eraser();break;
   }
 }
+
+
 
 // Drawing options
 function customColor() {
@@ -99,14 +95,9 @@ function randomColor() {
   event.target.style.backgroundColor = `rgba(${randomR}, ${randomG}, ${randomB})`;
 }
 
-
-/////////////////////////////////////////////////////////////
-
 function darkGradient() {
   let targetColor = event.target.style.backgroundColor;
   let targetColorCanvas = event.target.parentElement.style.backgroundColor;
-
-console.log(targetColorCanvas);
 
   if (targetColor === '') {
     targetColor = targetColorCanvas
@@ -119,8 +110,8 @@ console.log(targetColorCanvas);
   let s = match[2];
   let l = match[3];
   let luminaceNr = Number(l.replace(/%/, ''));
-
   let reducedLuminace
+
   if (luminaceNr > 0) {
     if (luminaceNr === 1) {
       reducedLuminace = luminaceNr - 1;
@@ -133,35 +124,41 @@ console.log(targetColorCanvas);
 
   newHslValue = `hsl(${h}, ${s}, ${reducedLuminace}%)`;
   event.target.style.backgroundColor = newHslValue;
-
-
-
-// Darken background
-
-
-
-
-
-
-
-
 }
 
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////
-
 function lightGradient() {
-  // not working yet
+  let targetColor = event.target.style.backgroundColor;
+  let targetColorCanvas = event.target.parentElement.style.backgroundColor;
+
+  if (targetColor === '') {
+    targetColor = targetColorCanvas
+  }
+
+  let hslValue = convertRgbToHsl(targetColor);
+  let regexHsl = /hsl\((\d{1,3}), (\d{1,2}%), (\d{1,2}%)\)/;
+  let match = regexHsl.exec(hslValue);
+  let h = match[1];
+  let s = match[2];
+  let l = match[3];
+  let luminaceNr = Number(l.replace(/%/, ''));
+  let increasedLuminace
+
+  if (luminaceNr < 100) {
+    if (luminaceNr === 99) {
+      increasedLuminace = luminaceNr + 1;
+    } else {
+      increasedLuminace = luminaceNr + 2;
+    }
+  } else if (luminaceNr => 100) {
+    increasedLuminace = luminaceNr;
+  }
+
+  newHslValue = `hsl(${h}, ${s}, ${increasedLuminace}%)`;
+  event.target.style.backgroundColor = newHslValue;
 }
 
 function eraser() {
-  event.target.style.backgroundColor = canvasColorInput.value;
+  event.target.style.backgroundColor = '';
 }
 
 
@@ -253,20 +250,15 @@ function convertRgbToHsl(rgbValue) {
     } else {
       s = ((max - min) / (2 - max - min)).toFixed(2);
     }
+    // Calculate hue
+    switch(max) {
+      case r: h = (g - b) / (max - min) + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / (max - min) + 2; break;
+      case b: h = (r - g) / (max - min) + 4; break;
+    }
   }
 
-  // Calculate hue
-  if (max === r) {
-    h = (g - b) / (max - min);
-  } else if (max === g) {
-    h = 2 + (b - r) / (max - min);
-  } else if (max === b) {
-    h = 4 + (r - g) / (max - min);
-  }
   h *= 60;
-  if (h < 0) {
-    h += 360;
-  }
 
   // Make HSL values suitable for CSS
   h = Math.round(h);
