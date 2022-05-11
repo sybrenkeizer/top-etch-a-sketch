@@ -33,9 +33,9 @@
 
   --fs-h1: clamp(1.7rem, 4vw, 2.5rem);
   --fs-legend: clamp(1.5rem, 3.1vw, 1.8rem);
-  --fs-label: clamp(0.9rem, 1.9vw, 1.1rem);
+  --fs-label: clamp(0.9rem, 1.9vw, 1.07rem);
   --fs-btn: clamp(0.8rem, 1.75vw, 1.1rem);
-  --fs-footer: clamp(0.6rem, 1.6vw, 1rem);
+  --fs-footer: clamp(0.8em, 1.6vw, 1rem);
   --fs-body: 1rem;
 
   --spacer-sm: 2%;
@@ -97,6 +97,10 @@ button { font-family: var(--ff-pri) }
   text-align: center;
   font-family: var(--ff-sec);
   margin-block: var(--spacer-sm);
+  text-shadow: 4px 3px 0px rgba(0,0,0,0.45), 9px 8px 0px rgba(0,0,0,0.15);
+  letter-spacing: 0.15em;
+  /* font-style: italic;  */
+
 }
 
 
@@ -142,6 +146,13 @@ label  {
 }
 label:hover {
   text-decoration: underline;
+}
+input:checked+label {
+  text-decoration: underline;
+}
+.canvas-color__radio:checked+label,
+.grid-sizer__description:hover {
+  text-decoration: none;
 }
 .radiobox,
 .checkbox {
@@ -216,12 +227,13 @@ input[type="color"] {
   display: grid;
   width: 80vmin;
   height: 80vmin;
-  background-color: white;
+  background-color: #fefefe;
   border: 2px solid var(--clr-dark);
   border-radius: var(--border-radius);
 }
 .grid-show {
   border: 1px solid #000;
+  color: rgb(255, 250, 250);
 }
 
 
@@ -252,5 +264,8 @@ footer {
   }
   .grid__container {
     margin-inline: auto;
+  }
+  footer {
+    margin-bottom: var(--spacer-sm);
   }
 }

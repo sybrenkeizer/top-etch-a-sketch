@@ -16,21 +16,17 @@ const showGridBtn = document.querySelector('.toggle-grid__input');
 
 
 
-window.onload = function() {
-  setGrid(currentSize);
-}
-
-
-
 // Default options
 const DEFAULT_OPTION = 'customColor';
 const DEFAULT_SIZE = 50;
+const DEFAULT_CANVAS_COLOR = 'rgb(250, 250, 250)';
 
 
 
 // Main settings
 let currentDrawOption = DEFAULT_OPTION;
 let currentSize = DEFAULT_SIZE;
+let currentCanvasColor = DEFAULT_CANVAS_COLOR;
 let mouseIsDown = false;
 let gridIsVisible = false;
 
@@ -45,6 +41,21 @@ function setCurrentSize(newSize) {
   currentSize = newSize;
 }
 
+function setCanvasColor(newCanvasColor) {
+  currentCanvasColor = newCanvasColor;
+}
+
+window.onload = function() {
+  setGrid(currentSize);
+  gridContainer.style.backgroundColor = currentCanvasColor
+}
+
+
+
+// canvasColorInput.addEventListener('input', () => {
+//   gridContainer.style.backgroundColor = canvasColorInput.value;
+//   canvasColorRadio.checked = true;
+// })
 
 
 // Store interactions
@@ -63,25 +74,13 @@ document.body.onmouseup = () => (mouseIsDown = false);
 function draw(event) {
   if (event.type === 'mouseover' && !mouseIsDown) return
   switch(currentDrawOption) {
-    case 'customColor':
-      customColor();
-      break;
-    case 'randomColor':
-      randomColor();
-      break;
-    case 'darkGradient':
-      darkGradient();
-      break;
-    case 'lightGradien':
-      lightGradient();
-      break;
-    case 'eraser':
-      eraser();
-      break;
+    case 'customColor': customColor(); break;
+    case 'randomColor': randomColor(); break;
+    case 'darkGradient': darkGradient(); break;
+    case 'lightGradien': lightGradient(); break;
+    case 'eraser': eraser();break;
   }
 }
-
-
 
 // Drawing options
 function customColor() {
@@ -96,13 +95,66 @@ function randomColor() {
   const randomR = Math.floor(Math.random() * 256);
   const randomG = Math.floor(Math.random() * 256);
   const randomB = Math.floor(Math.random() * 256);
-  const randomA = Math.floor(Math.random() * 8 + 3);
-  event.target.style.backgroundColor = `rgba(${randomR}, ${randomG}, ${randomB}, 0.${randomA})`
+  // const randomA = Math.floor(Math.random() * 8 + 3);
+  event.target.style.backgroundColor = `rgba(${randomR}, ${randomG}, ${randomB})`;
 }
 
+
+/////////////////////////////////////////////////////////////
+
 function darkGradient() {
-  // not working yet
+  let targetColor = event.target.style.backgroundColor;
+  let targetColorCanvas = event.target.parentElement.style.backgroundColor;
+
+console.log(targetColorCanvas);
+
+  if (targetColor === '') {
+    targetColor = targetColorCanvas
+  }
+
+  let hslValue = convertRgbToHsl(targetColor);
+  let regexHsl = /hsl\((\d{1,3}), (\d{1,2}%), (\d{1,2}%)\)/;
+  let match = regexHsl.exec(hslValue);
+  let h = match[1];
+  let s = match[2];
+  let l = match[3];
+  let luminaceNr = Number(l.replace(/%/, ''));
+
+  let reducedLuminace
+  if (luminaceNr > 0) {
+    if (luminaceNr === 1) {
+      reducedLuminace = luminaceNr - 1;
+    } else {
+      reducedLuminace = luminaceNr - 2;
+    }
+  } else if (luminaceNr <= 0) {
+    reducedLuminace = luminaceNr;
+  }
+
+  newHslValue = `hsl(${h}, ${s}, ${reducedLuminace}%)`;
+  event.target.style.backgroundColor = newHslValue;
+
+
+
+// Darken background
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
 
 function lightGradient() {
   // not working yet
@@ -148,7 +200,6 @@ function clearCanvas() {
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.firstChild)
   }
-  console.log(currentDrawOption);
 }
 
 function setGrid(value) {
@@ -156,6 +207,7 @@ function setGrid(value) {
   gridContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`;
   for (let i = 0; i < value * value; i++) {
     let gridElement = document.createElement('div');
+    // gridElement.style.backgroundColor = canvasColorInput.value;
     gridElement.addEventListener('mouseover', draw);
     gridElement.addEventListener('mousedown', draw);
 
@@ -167,4 +219,60 @@ function setGrid(value) {
 
     gridContainer.appendChild(gridElement);
   }
+}
+
+function convertRgbToHsl(rgbValue) {
+  // Separate RGB values
+  const regex = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
+  const match = regex.exec(rgbValue);
+  let r = match[1];
+  let g = match[2];
+  let b = match[3];
+
+  // Convert RGB values to a range of 0-1 with 2 decimals
+  (r /= 255).toFixed(2);
+  (g /= 255).toFixed(2);
+  (b /= 255).toFixed(2);
+
+  // Find the minimum and maximum values
+  let max = Math.max(r, g, b);
+  let min = Math.min(r, g, b);
+
+  // Calculate luminace
+  let l = ((max + min) /  2).toFixed(2);
+  let s;
+  let h;
+
+  // Calculate Saturation
+  if (max === min) {
+    s = 0;
+    h = 0;
+  } else {
+    if (l < 0.5) {
+      s = ((max - min) / (max + min)).toFixed(2);
+    } else {
+      s = ((max - min) / (2 - max - min)).toFixed(2);
+    }
+  }
+
+  // Calculate hue
+  if (max === r) {
+    h = (g - b) / (max - min);
+  } else if (max === g) {
+    h = 2 + (b - r) / (max - min);
+  } else if (max === b) {
+    h = 4 + (r - g) / (max - min);
+  }
+  h *= 60;
+  if (h < 0) {
+    h += 360;
+  }
+
+  // Make HSL values suitable for CSS
+  h = Math.round(h);
+  s = Math.round(s * 100);
+  l = Math.round(l * 100);
+
+  let hslValue = `hsl(${h}, ${s}%, ${l}%)`
+  return hslValue;
 }
