@@ -39,8 +39,6 @@
   --fs-body: 1rem;
   --fs-icon: 1.5em;
 
-/* clamp(0.8rem, 1.8vw, 1.2rem); */
-
   --spacer-sm: 2%;
   --spacer-md: calc(var(--spacer-sm) * 2);
   --spacer-lg: calc(var(--spacer-sm) * 3);
@@ -49,7 +47,6 @@
   --txt-shadow-light: 1px -1px 0px #fff;
   --txt-shadow-dark: 1px 1px 4px var(--clr-dark);
   --box-shadow: 1px 2px 3px 0px var(--clr-dark);
-  /* --box-shadow-active: 1px 5px 3px 0px var(--clr-dark); */
 
   --color-input-size: clamp(1.4rem, 4vw, 2.8rem);
   --radio-check-size: clamp(0.9rem, 1.70vw, 1.1rem);
