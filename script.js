@@ -14,6 +14,13 @@ const gridSizerDescription = document.querySelector('.grid-sizer__description');
 const gridInputRange = document.querySelector('.grid-sizer__input');
 const showGridBtn = document.querySelector('.toggle-grid__input');
 
+const expandOptionsBtn = document.querySelector('.expand__item__label');
+const settingsDrawing = document.querySelector('.fieldset__container--drawing');
+const showMoreOptions = document.querySelectorAll('.fieldset__item--secondary');
+const arrowRight = document.querySelector('.fa-circle-arrow-right');
+const arrowUp = document.querySelector('.fa-circle-arrow-up');
+const expandOptionsLabel = document.querySelector('.expand__item__label');
+
 
 
 // Default options
@@ -91,9 +98,42 @@ function randomColor() {
   const randomR = Math.floor(Math.random() * 256);
   const randomG = Math.floor(Math.random() * 256);
   const randomB = Math.floor(Math.random() * 256);
-  // const randomA = Math.floor(Math.random() * 8 + 3);
   event.target.style.backgroundColor = `rgba(${randomR}, ${randomG}, ${randomB})`;
 }
+
+function eraser() {
+  event.target.style.backgroundColor = '';
+}
+
+/////////////////////////////////////////////////////////////////////
+
+expandOptionsBtn.addEventListener('click', () => {
+  if (arrowUp.classList.contains('remove-arrow')) {
+    arrowRight.classList.toggle('remove-arrow');
+    arrowUp.classList.toggle('remove-arrow');
+  } else if (arrowRight.classList.contains('remove-arrow')) {
+    arrowRight.classList.toggle('remove-arrow');
+    arrowUp.classList.toggle('remove-arrow');
+  }
+  if (arrowRight.classList.contains('remove-arrow')) {
+    expandOptionsLabel.textContent = "Less Options";
+  } else {
+    expandOptionsLabel.textContent = "More Options";
+  }
+
+  showMoreOptions.forEach(showOption => {
+    showOption.classList.toggle('fieldset__item--secondary');
+  })
+})
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
 
 function darkGradient() {
   let targetColor = event.target.style.backgroundColor;
@@ -157,9 +197,7 @@ function lightGradient() {
   event.target.style.backgroundColor = newHslValue;
 }
 
-function eraser() {
-  event.target.style.backgroundColor = '';
-}
+
 
 
 

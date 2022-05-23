@@ -17,65 +17,118 @@
   </head>
   <body>
     <header>
-      <h1 class="header">Etch A Sketch</h1>
+      <h1 class="header">Etch A Sketch 2.0</h1>
     </header>
     <main>
       <div class="settings">
 
         <fieldset>
           <legend>Drawing</legend>
-          <div class="fieldset__container">
+          <div class="fieldset__container fieldset__container--drawing">
 
-            <div class="fieldset__item">
-              <div class="custom-color__input__wrapper">
-                <input class="custom-color__input" type="color" value="#000" id="custom-color" title="Choose pencil color">
+            <div class="drawing__column--1">
+
+              <div class="fieldset__item fieldset__item--drawing-color fieldset__item--primary">
+                <div class="custom-color__input__wrapper">
+                  <input class="custom-color__input" type="color" value="#000" id="custom-color" title="Choose pencil color">
+                </div>
+                <input class="radiobox custom-color__radio" type="radio" name="drawing" id="custom-color" checked>
+                <label class="custom-color__description" for="custom-color" title="Choose pencil color">Custom Color</label>
               </div>
-              <input class="radiobox custom-color__radio" type="radio" name="drawing" id="custom-color" checked>
-              <label class="custom-color__description" for="custom-color" title="Choose pencil color">Custom Color</label>
+
+              <div class="fieldset__item fieldset__item--primary">
+                <input class="radiobox random-color__input" type="radio" name="drawing" id="random-color">
+                <label class="random-color__description" for="random-color" title="Activate pencil with random colors">Random Color</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--primary">
+                <input class="radiobox eraser__input" type="radio" name="drawing" id="eraser">
+                <label class="eraser__description" for="eraser" title="Activate eraser to remove drawing strokes">Eraser</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox dark-gradient__input" type="radio" name="drawing" id="dark-gradient">
+                <label class="dark-gradient__description" for="dark-gradient" title="Darken any grid being hovered">Dark Gradient</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox light-gradient__input" type="radio" name="drawing" id="light-gradient">
+                <label class="light-gradient__description" for="light-gradient" title="Apply on drawings to lighten the gradient">Light Gradient</label>
+              </div>
+
             </div>
 
-            <div class="fieldset__item">
-              <input class="radiobox random-color__input" type="radio" name="drawing" id="random-color">
-              <label class="random-color__description" for="random-color" title="Activate pencil with random colors">Random Color</label>
+            <div class="drawing__column--2">
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox saturate__input" type="radio" name="drawing" id="saturate">
+                <label class="saturate__description" for="saturate" title="">Saturate</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox dry__input" type="radio" name="drawing" id="dry">
+                <label class="dry__description" for="dry" title="">Dry</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox add-red__input" type="radio" name="drawing" id="add-red">
+                <label class="add-red__description" for="add-red" title="">Add Red</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox add-green__input" type="radio" name="drawing" id="add-green">
+                <label class="add-green__description" for="add-green" title="">Add Green</label>
+              </div>
+
+              <div class="fieldset__item fieldset__item--secondary">
+                <input class="radiobox add-blue__input" type="radio" name="drawing" id="add-blue">
+                <label class="add-blue__description" for="add-blue" title="">Add Green</label>
+              </div>
+
             </div>
 
-            <div class="fieldset__item">
-              <input class="radiobox dark-gradient__input" type="radio" name="drawing" id="dark-gradient">
-              <label class="dark-gradient__description" for="dark-gradient" title="Darken any grid being hovered">Dark Gradient</label>
+            <!-- Expansion button -->
+            <div class="fieldset__item expand__item">
+              <input class="radiobox expand__item__input" type="radio" name="drawing">
+              <label class="expand__item__label" title="">More Options</label>
+              <i class="link-arrow--right fa-solid fa-circle-arrow-right"></i>
+              <i class="link-arrow--up fa-solid fa-circle-arrow-up remove-arrow"></i>
             </div>
+            <!-- Expansion button <--></-->
 
-            <div class="fieldset__item">
-              <input class="radiobox light-gradient__input" type="radio" name="drawing" id="light-gradient">
-              <label class="light-gradient__description" for="light-gradient" title="Apply on drawings to lighten the gradient">Light Gradient</label>
-            </div>
+          </div>
 
-            <div class="fieldset__item">
-              <input class="radiobox eraser__input" type="radio" name="drawing" id="eraser">
-              <label class="eraser__description" for="eraser" title="Activate eraser to remove drawing strokes">Eraser</label>
-            </div>
-
-          </div> <!-- CLOSURE FIELDSET CONTAINER -->
         </fieldset>
 
         <fieldset>
           <legend>Canvas</legend>
-          <div class="fieldset__container">
-            <div class="fieldset__item">
+          <div class="fieldset__container fieldset__container--canvas">
+
+            <div class="fieldset__item fieldset__item--canvas-color">
               <div class="canvas-color__input__wrapper">
                 <input class="canvas-color__input" type="color" value="#fefefe" id="canvas-color" title="Choose Background color of sketch pad">
               </div>
               <input class="radiobox canvas-color__radio" type="radio" name="canvas" id="canvas-color" checked>
               <label class="canvas-color__description" for="canvas-color" title="Choose Background color of sketch pad">Canvas Color</label>
             </div>
-            <div class="fieldset__item">
-              <input class="checkbox toggle-grid__input" type="checkbox" id="toggle-grid">
-              <label class="toggle-grid__description" for="toggle-grid" title="Click to show the grid">Show Grid</label>
-            </div>
-            <div class="grid-sizer fieldset__item">
+
+            <div class="grid-sizer fieldset__item ">
               <label class="grid-sizer__description" title="Change the grid size up to a maximum of 100 x 100">Grid size: 50 x 50</label>
               <input class="grid-sizer__input" type="range" value="50" min="4" max="100" step="4" title="Change the grid size up to a maximum of 100 x 100"</input>
             </div>
-            <button class="clear-field__btn btn fieldset__item" title="Clear the sketch pad">Clear</button>
+
+            <div class="boxbBtn__containter">
+
+              <div class="fieldset__item">
+                <input class="checkbox toggle-grid__input" type="checkbox" id="toggle-grid">
+                <label class="toggle-grid__description" for="toggle-grid" title="Click to show the grid">Show Grid</label>
+              </div>
+
+              <button class="clear-field__btn btn fieldset__item" title="Clear the sketch pad">Clear</button>
+
+            </div>
+
+
             <!--
             <button class="save__btn btn fieldset__item" title="Save drawing in browser cache. Only the last drawing will be retrievable">Save</button>
             <button class="restore__btn btn fieldset__item" title="Restore last saved drawing">Restore</button>
