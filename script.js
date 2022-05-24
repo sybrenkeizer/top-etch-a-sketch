@@ -47,7 +47,6 @@ let gridIsVisible = false;
 // Main functions
 function setCurrentDrawOption(newOption) {
   currentDrawOption = newOption;
-  console.log(currentDrawOption);
 }
 
 
@@ -218,7 +217,6 @@ function saturate() {
 
   let newHslValue = `hsl(${h}, ${saturateNumber}%, ${l})`;
   event.target.style.backgroundColor = newHslValue;
-  console.log(newHslValue);
 }
 
 
@@ -366,26 +364,30 @@ canvasColorInput.addEventListener('input', () => {
 })
 
 
-showGridBtn.addEventListener('click', () => {
-  if (showGridBtn.checked) {
-    gridIsVisible = true;
-  } else if (!showGridBtn.checked) {
-    gridIsVisible = false;
-  }
-  clearCanvas()
-  setGrid(gridInputRange.value);
-})
-
-
-gridInputRange.addEventListener('input', () => {
+gridInputRange.addEventListener('input', (event) => {
   clearCanvas();
   setGrid(gridInputRange.value);
   gridSizerDescription.innerHTML = `Grid size ${gridInputRange.value} x ${gridInputRange.value}`;
 })
 
-clearCanvasBtn.addEventListener('click', () => {
-  clearCanvas();
-  setGrid(gridInputRange.value);
+
+// showGridBtn.addEventListener('click', () => {
+//   if (showGridBtn.checked) {
+//     gridIsVisible = true;
+//   } else if (!showGridBtn.checked) {
+//     gridIsVisible = false;
+//   }
+//   clearCanvas()
+//   setGrid(gridInputRange.value);
+// })
+
+
+
+clearCanvasBtn.addEventListener('click', (event) => {
+  if (confirm('Are you sure you want to clear the canvas?')) {
+    clearCanvas();
+    setGrid(gridInputRange.value);
+  }
 })
 
 
@@ -397,26 +399,23 @@ function clearCanvas() {
   }
 }
 
-
 function setGrid(value) {
   gridContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`;
   for (let i = 0; i < value * value; i++) {
     let gridElement = document.createElement('div');
-    // gridElement.style.backgroundColor = canvasColorInput.value;
     gridElement.addEventListener('mouseover', draw);
     gridElement.addEventListener('mousedown', draw);
 
-    if (gridIsVisible === true) {
-      gridElement.classList.add('grid-show');
-    } else if (gridIsVisible === false) {
-      gridElement.classList.remove('grid-show');
-    }
+    // if (gridIsVisible === true) {
+    //   gridElement.classList.add('grid-show');
+    // } else if (gridIsVisible === false) {
+    //   gridElement.classList.remove('grid-show');
+    // }
 
     gridContainer.appendChild(gridElement);
   }
 }
-
 
 function convertRgbToHsl(rgbValue) {
   // Separate RGB values
